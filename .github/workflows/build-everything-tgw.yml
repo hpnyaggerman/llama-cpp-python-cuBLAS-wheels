@@ -15,46 +15,81 @@ permissions:
 jobs:          
   build_textgen_wheels_windows:
     name: CUDA Wheels Windows
-    uses: ./.github/workflows/build-wheels-oobabooga.yml
-    with:
-      version: ${{ inputs.version }}
-      config: 'os:windows-2019'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run Windows build script
+        uses: ./.github/workflows/build-wheels-oobabooga.yml
+        with:
+          version: ${{ inputs.version }}
+          config: 'os:windows-2019'
 
   build_textgen_wheels_linux:
     name: CUDA Wheels Linux
-    uses: ./.github/workflows/build-wheels-oobabooga.yml
-    with:
-      version: ${{ inputs.version }}
-      config: 'os:ubuntu-20.04'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run Linux build script
+        uses: ./.github/workflows/build-wheels-oobabooga.yml
+        with:
+          version: ${{ inputs.version }}
+          config: 'os:ubuntu-20.04'
 
   build_wheels_tensorcores_windows:
     name: Tensor Core Windows
-    uses: ./.github/workflows/build-wheels-tensorcores.yml
-    with:
-      version: ${{ inputs.version }}
-      config: 'os:windows-2019'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run Tensor Core Windows build script
+        uses: ./.github/workflows/build-wheels-tensorcores.yml
+        with:
+          version: ${{ inputs.version }}
+          config: 'os:windows-2019'
       
   build_wheels_tensorcores_linux:
     name: Tensor Core Linux
-    uses: ./.github/workflows/build-wheels-tensorcores.yml
-    with:
-      version: ${{ inputs.version }}
-      config: 'os:ubuntu-20.04'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run Tensor Core Linux build script
+        uses: ./.github/workflows/build-wheels-tensorcores.yml
+        with:
+          version: ${{ inputs.version }}
+          config: 'os:ubuntu-20.04'
 
   build_wheels_cpu:
     name: CPU-only Wheels
-    uses: ./.github/workflows/build-wheels-cpu.yml
-    with:
-      version: ${{ inputs.version }}
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run CPU build script
+        uses: ./.github/workflows/build-wheels-cpu.yml
+        with:
+          version: ${{ inputs.version }}
       
   build_wheels_macos:
     name: MacOS Metal Wheels
-    uses: ./.github/workflows/build-wheels-macos.yml
-    with:
-      version: ${{ inputs.version }}
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run MacOS build script
+        uses: ./.github/workflows/build-wheels-macos.yml
+        with:
+          version: ${{ inputs.version }}
       
   build_wheels_rocm:
     name: ROCm Wheels
-    uses: ./.github/workflows/build-wheels-oobabooga-rocm.yml
-    with:
-      version: ${{ inputs.version }}
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run ROCm build script
+        uses: ./.github/workflows/build-wheels-oobabooga-rocm.yml
+        with:
+          version: ${{ inputs.version }}
