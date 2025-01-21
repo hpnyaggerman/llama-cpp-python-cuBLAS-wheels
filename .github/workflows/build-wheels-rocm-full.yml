@@ -42,7 +42,7 @@ permissions:
 jobs:
   define_matrix:
     name: Define Build Matrix
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     defaults:
@@ -86,7 +86,7 @@ jobs:
   build_wheels:
     name: Build ${{ matrix.os }} ${{ matrix.avx }} ROCm ${{ matrix.rocm }} ${{ matrix.rename == '1' && 'Textgen Wheel' || 'Wheel' }} ${{ matrix.pyver }}
     needs: define_matrix
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
     strategy:
       matrix: ${{ fromJSON(needs.define_matrix.outputs.matrix) }}
     defaults:
