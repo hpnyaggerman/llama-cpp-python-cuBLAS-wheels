@@ -42,7 +42,7 @@ permissions:
 jobs:
   define_matrix:
     name: Define Build Matrix
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     defaults:
@@ -104,8 +104,6 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.pyver }}
-        env:
-          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
 
       - name: Setup Mamba
         uses: conda-incubator/setup-miniconda@v3.1.0
